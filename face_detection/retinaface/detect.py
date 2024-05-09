@@ -15,6 +15,11 @@ from ..base import Detector
 from ..build import DETECTOR_REGISTRY
 
 
+RETINAFACE_RESNET50_URL = ('https://api.loke.aws.unit.no/dlr-gui-backend-resources-content'
+                           '/v2/contents/links'
+                           '/8dd81669-eb84-4520-8173-dbe49d72f44cb2eef6da-3983-4a12-9085'
+                           '-d11555b93842c19bdf27-b924-4214-9381-e6cac30b87cf')
+
 class RetinaNetDetector(Detector):
 
     def __init__(
@@ -33,7 +38,7 @@ class RetinaNetDetector(Detector):
             assert model == "resnet50"
             cfg = cfg_re50
             state_dict = load_state_dict_from_url(
-                "https://folk.ntnu.no/haakohu/RetinaFace_ResNet50.pth",
+                RETINAFACE_RESNET50_URL,
                 map_location=torch_utils.get_device()
             )
             state_dict = {k.replace("module.", ""): v for k, v in state_dict.items()}
